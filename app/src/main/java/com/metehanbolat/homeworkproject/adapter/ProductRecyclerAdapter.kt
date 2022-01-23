@@ -18,9 +18,17 @@ class ProductRecyclerAdapter(private val productList: List<Bilgiler>, val contex
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        Glide.with(context).load(productList[position].images[0].normal).into(holder.binding.productImage)
-        holder.binding.productName.text = productList[position].productName
-        holder.binding.productPrice.text = "${productList[position].price} ₺"
+
+        holder.binding.apply {
+            Glide.with(context).load(productList[position].images[0].normal).into(productImage)
+            productName.text = productList[position].productName
+            productPrice.text = "${productList[position].price} ₺"
+
+            productRowLinear.setOnClickListener {
+                println(productList[position].productName)
+            }
+        }
+
     }
 
     override fun getItemCount(): Int {

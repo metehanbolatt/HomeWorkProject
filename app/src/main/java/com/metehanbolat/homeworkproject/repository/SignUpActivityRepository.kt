@@ -27,9 +27,10 @@ object SignUpActivityRepository {
                     res?.let { user ->
                         when {
                             user.user[0].durum.toString() == TRUE -> {
-                                val intent = Intent(activity, FeedActivity::class.java)
-                                activity.startActivity(intent)
-                                activity.finish()
+                                Intent(activity, FeedActivity::class.java).apply {
+                                    activity.startActivity(this)
+                                    activity.finish()
+                                }
                             }
                             user.user[0].durum.toString() == FALSE -> Snackbar.make(view, "Sign Up Failed: ${user.user[0].mesaj}", Snackbar.LENGTH_LONG).show()
                             else -> Snackbar.make(view, "Unexpected Failure!!", Snackbar.LENGTH_LONG).show()

@@ -27,10 +27,11 @@ object LogInActivityRepository {
                     res?.let { logIn ->
                         when {
                             logIn.user[0].durum.toString() == TRUE -> {
-                                val intent = Intent(activity, FeedActivity::class.java)
-                                intent.putExtra("name", logIn.user[0].bilgiler.userName)
-                                activity.startActivity(intent)
-                                activity.finish()
+                                Intent(activity, FeedActivity::class.java).apply {
+                                    putExtra("name", logIn.user[0].bilgiler.userName)
+                                    activity.startActivity(this)
+                                    activity.finish()
+                                }
                             }
                             logIn.user[0].durum.toString() == FALSE -> Snackbar.make(view, "Log In Failed: ${logIn.user[0].mesaj}", Snackbar.LENGTH_LONG).show()
                             else -> Snackbar.make(view, "Unexpected Failure!!", Snackbar.LENGTH_LONG).show()
