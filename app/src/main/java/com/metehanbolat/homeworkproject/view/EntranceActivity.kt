@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import com.metehanbolat.homeworkproject.R
 import com.metehanbolat.homeworkproject.databinding.ActivityEntranceBinding
 
 class EntranceActivity : AppCompatActivity() {
@@ -14,6 +15,7 @@ class EntranceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEntranceBinding.inflate(layoutInflater)
         val view = binding.root
+        setTheme(R.style.Theme_HomeWorkProject)
         setContentView(view)
 
         object : CountDownTimer(3000, 1000){
