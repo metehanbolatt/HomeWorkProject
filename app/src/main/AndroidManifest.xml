@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HomeWorkProject">
         <activity
+            android:name=".view.ProductDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.RegisterActivity"
             android:exported="false" />
         <activity

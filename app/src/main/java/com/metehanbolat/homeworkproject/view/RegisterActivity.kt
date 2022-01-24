@@ -25,6 +25,7 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             signUpButton.setOnClickListener {
+                val repository = SignUpActivityRepository()
                 val name = binding.name.text.toString()
                 val surname = binding.surname.text.toString()
                 val phone = binding.phone.text.toString()
@@ -37,7 +38,7 @@ class RegisterActivity : AppCompatActivity() {
                     phone.isBlank() -> Snackbar.make(it, "Please fill the Phone Field!", Snackbar.LENGTH_LONG).show()
                     email.isBlank() -> Snackbar.make(it, "Please fill the Email Field!", Snackbar.LENGTH_LONG).show()
                     password.isBlank() -> Snackbar.make(it, "Please fill the Password Field!", Snackbar.LENGTH_LONG).show()
-                    else -> SignUpActivityRepository.signUp(name, surname, email, password, phone, it, this@RegisterActivity)
+                    else -> repository.signUp(name, surname, email, password, phone, it, this@RegisterActivity)
                 }
             }
 

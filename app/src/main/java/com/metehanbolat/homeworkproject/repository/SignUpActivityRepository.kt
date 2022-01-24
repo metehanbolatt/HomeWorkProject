@@ -14,7 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-object SignUpActivityRepository {
+class SignUpActivityRepository {
 
     fun signUp(userName: String, userSurname: String, userEmail: String, userPassword: String, userPhone: String, view: View, activity : Activity){
         val retrofitService = RetrofitClient.getRetrofitClient().create(RetrofitService::class.java)
@@ -28,6 +28,7 @@ object SignUpActivityRepository {
                         when {
                             user.user[0].durum.toString() == TRUE -> {
                                 Intent(activity, FeedActivity::class.java).apply {
+                                    putExtra("userId", user.user[0].userId)
                                     activity.startActivity(this)
                                     activity.finish()
                                 }

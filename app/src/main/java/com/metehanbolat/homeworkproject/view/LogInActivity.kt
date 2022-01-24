@@ -17,6 +17,8 @@ class LogInActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        val repository = LogInActivityRepository()
+
         binding.apply {
 
             logInButton.setOnClickListener {
@@ -25,7 +27,7 @@ class LogInActivity : AppCompatActivity() {
                 when {
                     email.isBlank() -> Snackbar.make(it, "Please fill the Email Field!", Snackbar.LENGTH_LONG).show()
                     password.isBlank() -> Snackbar.make(it, "Please fill the Password Field!", Snackbar.LENGTH_LONG).show()
-                    else -> LogInActivityRepository.userLogin(email, password, it, this@LogInActivity)
+                    else -> repository.userLogin(email, password, it, this@LogInActivity)
                 }
             }
 

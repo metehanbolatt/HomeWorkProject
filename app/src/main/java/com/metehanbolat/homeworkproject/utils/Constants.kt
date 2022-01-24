@@ -8,4 +8,5 @@ object Constants {
     const val FALSE = "false"
     const val TRUE = "true"
     const val ZERO = "0"
+    const val HTML = "12"
 }

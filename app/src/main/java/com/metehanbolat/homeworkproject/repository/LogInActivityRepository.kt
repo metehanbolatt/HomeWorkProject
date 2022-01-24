@@ -14,7 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-object LogInActivityRepository {
+class LogInActivityRepository {
 
     fun userLogin(email : String, password: String, view: View, activity: Activity) {
         val retrofitService = RetrofitClient.getRetrofitClient().create(RetrofitService::class.java)
@@ -28,7 +28,7 @@ object LogInActivityRepository {
                         when {
                             logIn.user[0].durum.toString() == TRUE -> {
                                 Intent(activity, FeedActivity::class.java).apply {
-                                    putExtra("name", logIn.user[0].bilgiler.userName)
+                                    putExtra("userId", logIn.user[0].bilgiler.userId)
                                     activity.startActivity(this)
                                     activity.finish()
                                 }

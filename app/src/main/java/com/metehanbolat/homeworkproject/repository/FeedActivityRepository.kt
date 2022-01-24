@@ -12,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-object FeedActivityRepository {
+class FeedActivityRepository {
 
     val data = MutableLiveData<List<Bilgiler>>()
 

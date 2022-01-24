@@ -11,17 +11,27 @@ class FeedActivity : AppCompatActivity() {
     private lateinit var binding : ActivityFeedBinding
     private lateinit var adapter : ProductRecyclerAdapter
 
+    private var userId: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFeedBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
-        FeedActivityRepository.getData(view)
+        intent.extras?.let {
+            userId = it.getString("userId")
+        }
 
-        FeedActivityRepository.data.observe(this) { productBilgiler ->
-            adapter = ProductRecyclerAdapter(productBilgiler, this@FeedActivity)
-            binding.recyclerView.adapter = adapter
+        val repo = FeedActivityRepository()
+
+        repo.getData(view)
+
+        repo.data.observe(this) { productBilgiler ->
+            userId?.let {
+                adapter = ProductRecyclerAdapter(productBilgiler, it, this@FeedActivity)
+                binding.recyclerView.adapter = adapter
+            }
         }
 
     }
