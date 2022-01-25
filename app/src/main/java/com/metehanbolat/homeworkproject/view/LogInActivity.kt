@@ -4,12 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
+import com.metehanbolat.homeworkproject.database.Database
 import com.metehanbolat.homeworkproject.databinding.ActivityLogInBinding
 import com.metehanbolat.homeworkproject.repository.LogInActivityRepository
+import com.metehanbolat.homeworkproject.utils.Constants
+import com.metehanbolat.homeworkproject.utils.Constants.FALSE
 
 class LogInActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityLogInBinding
+
+    private lateinit var database: Database
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +23,7 @@ class LogInActivity : AppCompatActivity() {
         setContentView(view)
 
         val repository = LogInActivityRepository()
+        database = Database(this)
 
         binding.apply {
 
@@ -27,7 +33,31 @@ class LogInActivity : AppCompatActivity() {
                 when {
                     email.isBlank() -> Snackbar.make(it, "Please fill the Email Field!", Snackbar.LENGTH_LONG).show()
                     password.isBlank() -> Snackbar.make(it, "Please fill the Password Field!", Snackbar.LENGTH_LONG).show()
-                    else -> repository.userLogin(email, password, it, this@LogInActivity)
+                    else -> {
+                        if (checkBox.isChecked) {
+                            val userList = database.allUser()
+                            userList.forEach { userControl ->
+                                if (userControl.email == email && userControl.control != checkBox.isChecked.toString()) {
+                                    database.updateUser(userControl.uid, email, Constants.TRUE)
+                                }else{
+                                    database.addUser(email, Constants.TRUE)
+                                }
+                            }
+                        }else {
+                            if (!checkBox.isChecked) {
+                                val userList = database.allUser()
+                                userList.forEach { userControl ->
+                                    if (userControl.email == email && userControl.control != checkBox.isChecked.toString()) {
+                                        database.updateUser(userControl.uid, email, FALSE)
+                                    }else{
+                                        database.addUser(email, FALSE)
+                                    }
+                                }
+                            }
+                        }
+                        repository.userLogin(email, password, it, this@LogInActivity)
+                    }
+
                 }
             }
 

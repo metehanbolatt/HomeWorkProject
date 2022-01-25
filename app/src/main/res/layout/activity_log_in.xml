@@ -56,6 +56,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/email" />
 
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:text="Remember Me"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/password"
+        app:layout_constraintEnd_toEndOf="@id/password"/>
+
     <Button
         android:id="@+id/logInButton"
         android:layout_width="match_parent"
@@ -63,12 +73,12 @@
         android:text="Log In"
         android:textAllCaps="false"
         android:backgroundTint="#E65100"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password" />
+        app:layout_constraintTop_toBottomOf="@id/checkBox" />
 
     <LinearLayout
         android:layout_width="wrap_content"

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.metehanbolat.homeworkproject.adapter.ProductRecyclerAdapter
+import com.metehanbolat.homeworkproject.database.Database
 import com.metehanbolat.homeworkproject.databinding.ActivityFeedBinding
 import com.metehanbolat.homeworkproject.repository.FeedActivityRepository
 
@@ -11,6 +12,9 @@ class FeedActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityFeedBinding
     private lateinit var adapter : ProductRecyclerAdapter
+
+    //sil
+    private lateinit var database: Database
 
     private var userId: String? = null
 
@@ -25,6 +29,8 @@ class FeedActivity : AppCompatActivity() {
         }
 
         val repo = FeedActivityRepository()
+        database = Database(this)
+        println(database.allUser())
 
         repo.getData(view)
 
