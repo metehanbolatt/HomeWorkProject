@@ -8,6 +8,7 @@
     tools:context=".view.FeedActivity">
 
     <ImageView
+        android:id="@+id/exitImage"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/ic_baseline_exit_to_app_24"

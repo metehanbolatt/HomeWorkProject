@@ -1,5 +1,6 @@
 package com.metehanbolat.homeworkproject.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.metehanbolat.homeworkproject.adapter.ProductRecyclerAdapter
@@ -31,6 +32,15 @@ class FeedActivity : AppCompatActivity() {
             userId?.let {
                 adapter = ProductRecyclerAdapter(productBilgiler, it, this@FeedActivity)
                 binding.recyclerView.adapter = adapter
+            }
+        }
+
+        binding.apply {
+            exitImage.setOnClickListener {
+                Intent(this@FeedActivity, LogInActivity::class.java).apply {
+                    startActivity(this)
+                    finish()
+                }
             }
         }
 
