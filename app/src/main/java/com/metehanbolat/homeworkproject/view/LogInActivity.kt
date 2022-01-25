@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
+import com.metehanbolat.homeworkproject.database.ControlDatabase
 import com.metehanbolat.homeworkproject.database.Database
 import com.metehanbolat.homeworkproject.databinding.ActivityLogInBinding
 import com.metehanbolat.homeworkproject.repository.LogInActivityRepository
@@ -15,6 +16,7 @@ class LogInActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLogInBinding
 
     private lateinit var database: Database
+    private lateinit var databaseControl: ControlDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +26,7 @@ class LogInActivity : AppCompatActivity() {
 
         val repository = LogInActivityRepository()
         database = Database(this)
+        databaseControl = ControlDatabase(this)
 
         binding.apply {
 
@@ -54,6 +57,11 @@ class LogInActivity : AppCompatActivity() {
                                     }
                                 }
                             }
+                        }
+                        if (databaseControl.allUser().isNullOrEmpty()){
+                            databaseControl.addUser(email)
+                        }else{
+                            databaseControl.updateUser(1, email)
                         }
                         repository.userLogin(email, password, it, this@LogInActivity)
                     }

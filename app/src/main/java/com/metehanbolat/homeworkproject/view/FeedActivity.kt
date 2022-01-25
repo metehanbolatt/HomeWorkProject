@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.metehanbolat.homeworkproject.adapter.ProductRecyclerAdapter
+import com.metehanbolat.homeworkproject.database.ControlDatabase
 import com.metehanbolat.homeworkproject.database.Database
 import com.metehanbolat.homeworkproject.databinding.ActivityFeedBinding
 import com.metehanbolat.homeworkproject.repository.FeedActivityRepository
@@ -13,8 +14,7 @@ class FeedActivity : AppCompatActivity() {
     private lateinit var binding : ActivityFeedBinding
     private lateinit var adapter : ProductRecyclerAdapter
 
-    //sil
-    private lateinit var database: Database
+    private lateinit var database: ControlDatabase
 
     private var userId: String? = null
 
@@ -29,8 +29,7 @@ class FeedActivity : AppCompatActivity() {
         }
 
         val repo = FeedActivityRepository()
-        database = Database(this)
-        println(database.allUser())
+        database = ControlDatabase(this)
 
         repo.getData(view)
 
@@ -43,6 +42,7 @@ class FeedActivity : AppCompatActivity() {
 
         binding.apply {
             exitImage.setOnClickListener {
+                database.updateUser(1,"null")
                 Intent(this@FeedActivity, LogInActivity::class.java).apply {
                     startActivity(this)
                     finish()
