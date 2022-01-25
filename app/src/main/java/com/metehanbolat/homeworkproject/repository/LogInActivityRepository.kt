@@ -30,7 +30,7 @@ class LogInActivityRepository {
                                 Intent(activity, FeedActivity::class.java).apply {
                                     putExtra("userId", logIn.user[0].bilgiler.userId)
                                     activity.startActivity(this)
-                                    activity.finish()
+                                    activity.finishAffinity()
                                 }
                             }
                             logIn.user[0].durum.toString() == FALSE -> Snackbar.make(view, "Log In Failed: ${logIn.user[0].mesaj}", Snackbar.LENGTH_LONG).show()
