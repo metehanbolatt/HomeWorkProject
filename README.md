@@ -8,7 +8,7 @@ Bu uygulamada Retrofit kullanarak API'dan aldığım verileri uygulama ekranlar�
 * Glide
 * LiveData
 
-**Demo User**
+**Demo Kullanıcı**
 
 ---
 
