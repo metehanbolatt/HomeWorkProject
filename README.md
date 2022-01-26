@@ -8,6 +8,13 @@ Bu uygulamada Retrofit kullanarak API'dan aldığım verileri uygulama ekranlar�
 * Glide
 * LiveData
 
+**Demo User**
+
+---
+
+| 📫 Kullanıcı Email  | 🔒 Kullanıcı Şifre |
+| ------------- | ------------- |
+| mete@mail.com  | 12345  |
 
 
 
